@@ -72,6 +72,38 @@ pets = []animals.Pet{
 
 Look carefully at the `&` which precedes `animals.Dog` and `animals.Pet` and remember this is Go syntax for creating a reference.  If we did not add this when we are adding our pets to the slice then the compiler would complain.  The reason for this is that interfaces are always references, so it is not valid to attempt to assign a value type to a slice which is of interface even if the types implement the interface correctly.
 
+## Query parameters
+While there is not an example of query parameters in this project we did cover them in the second session and they are part of the homework.  If we remind our selfs of the structure of a URL.
+
+```
+http://www.google.com?q=search&something=else
+```
+
+This url can be broken down into the following components:
+* protocol = http://
+* server = www.google.com
+* querystring = ?q=search&something=else
+
+The querystring is a grouping of key value pairs separated by `=` which follow the `?` multiple key value pairs are separated by `&`.  Deconstructing our example query string we would get the following pairs:
+* field: q value: search
+* field: sometihng value: else
+
+If we need to access these values we can use the method on the `http.Request` object, given a handler which has the signature:
+
+```
+func ListKittens(rw http.ResponseWriter, r *http.Request)
+```
+
+We are passed a reference to the http.Request object which is named `r`, to access the query string we can therfore use the following syntax.
+
+```
+v := r.URL.Query().Get("q")
+```
+
+With our example query string the value of v would be `search`.
+
+(https://golang.org/pkg/net/http/#Request)[https://golang.org/pkg/net/http/#Request]
+
 ## Building the API
 ```bash
 go build main.go
