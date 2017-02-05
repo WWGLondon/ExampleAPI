@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/nicholasjackson/wwg/animals"
+	"github.com/WWGLondon/ExampleAPI/animals"
 )
 
 var pets []animals.Pet
