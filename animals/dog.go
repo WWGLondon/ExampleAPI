@@ -1,5 +1,9 @@
 package animals
 
+// Homework B.1
+// TODO:
+// Add a new field called Like to Dog struct
+// This new field should be of integer type
 type Dog struct {
 	Name    string
 	Hobbies []string
@@ -21,6 +25,11 @@ func (k *Dog) GetHobbies() []string {
 	return k.Hobbies
 }
 
-func (d *Dog) Bark() string {
+func (k *Dog) Bark() string {
 	return "Woof!"
+}
+
+// Homework B.2
+func (k *Dog) IncrementLikeCounter() {
+	// TODO: Modify this method to increment Like value
 }
