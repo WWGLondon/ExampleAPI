@@ -1,19 +1,50 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
+	"net/http"
 
 	"github.com/nicholasjackson/wwg/animals"
 )
 
+var pets []animals.Pet
+
 func main() {
-	kitty := animals.Kitten{}
-	kitty.SetName("Mr Tiggles")
+	pets = []animals.Pet{
+		&animals.Kitten{
+			Name: "Mr Tiggles",
+			Hobbies: []string{
+				"Playing with wool",
+				"Eating",
+			},
+		},
+		&animals.Kitten{
+			Name: "Top Cat",
+			Hobbies: []string{
+				"Taunting Officer Dibble",
+			},
+		},
+		&animals.Dog{
+			Name: "Fido",
+			Hobbies: []string{
+				"Barking",
+			},
+		},
+	}
 
-	fmt.Println(kitty.GetName())
+	http.HandleFunc("/list", ListKittens)
 
-	doggy := animals.Dog{}
-	fmt.Println(doggy.Bark())
+	http.ListenAndServe(":9000", http.DefaultServeMux)
+}
+
+func ListKittens(rw http.ResponseWriter, r *http.Request) {
+	data, err := json.Marshal(pets)
+	if err != nil {
+		rw.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	rw.Write(data)
 }
 
 // go run main.go
