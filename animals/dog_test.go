@@ -53,3 +53,13 @@ func TestGetNameGetsTheName(t *testing.T) {
 		t.Fail()
 	}
 }
+
+// Homework A : Write a barking test
+// Complete this test case
+func TestBarkGetsWoofed(t *testing.T) {
+	// setup
+	// TODO: instantiate a Dog to be tested
+
+	// assert
+	// TODO: fail the test if Bark method doesn't return "Woof!"
+}
