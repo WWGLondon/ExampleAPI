@@ -90,13 +90,13 @@ The querystring is a grouping of key value pairs separated by `=` which follow t
 
 If we need to access these values we can use the method on the `http.Request` object, given a handler which has the signature:
 
-```
+```go
 func ListKittens(rw http.ResponseWriter, r *http.Request)
 ```
 
 We are passed a reference to the http.Request object which is named `r`, to access the query string we can therfore use the following syntax.
 
-```
+```go
 v := r.URL.Query().Get("q")
 ```
 
