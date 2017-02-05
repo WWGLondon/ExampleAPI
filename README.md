@@ -102,7 +102,7 @@ v := r.URL.Query().Get("q")
 
 With our example query string the value of v would be `search`.
 
-(https://golang.org/pkg/net/http/#Request)[https://golang.org/pkg/net/http/#Request]
+[https://golang.org/pkg/net/http/#Request](https://golang.org/pkg/net/http/#Request)
 
 ## Building the API
 ```bash
