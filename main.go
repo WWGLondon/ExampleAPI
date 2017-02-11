@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/WWGLondon/ExampleAPI/animals"
+	"github.com/eggya/ExampleAPI/animals"
 )
 
 var pets []animals.Pet
@@ -33,6 +33,7 @@ func main() {
 	}
 
 	http.HandleFunc("/list", ListKittens)
+	http.HandleFunc("/like", LikedPet)
 
 	// Homework B.4
 	// TODO: Register a new "/like" route and associate it with `LikedPet` handler function
@@ -57,11 +58,20 @@ func LikedPet(rw http.ResponseWriter, r *http.Request) {
 	// TODO:
 	// assign a new variable "name" and it should be of type string
 	// parse query string with "name" key and assign the value to name variable
+	var name string
+	name = r.URL.Query().Get("name")
 
 	// Homework B.5.2
 	// TODO:
 	// iterate through pets
 	// increment Like value of a pet only if the pet's name equal to variable name
+	for _, pet := range pets {
+		if pet.GetName() == name {
+			pet.IncrementLikeCounter()
+			data, _ := json.Marshal(pet)
+			rw.Write(data)
+		}
+	}
 }
 
 // go run main.go

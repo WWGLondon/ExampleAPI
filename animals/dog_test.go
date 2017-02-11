@@ -53,3 +53,11 @@ func TestGetNameGetsTheName(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestIncrementLikeCounter(t *testing.T) {
+	dog := Dog{}
+	dog.IncrementLikeCounter()
+	if dog.Like != 1 {
+		t.Errorf("expected %d got %d", 1, dog.Like)
+	}
+}
